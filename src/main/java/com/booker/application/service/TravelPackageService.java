@@ -3,23 +3,27 @@ package com.booker.application.service;
 import java.util.List;
 import java.util.Optional;
 
-
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.booker.application.model.TravelService;
+import com.booker.application.model.Image;
 import com.booker.application.model.Reservation;
 import com.booker.application.model.TravelPackage;
+import com.booker.application.model.TravelService;
 import com.booker.application.repository.TravelPackageRepository;
 
-@Service
 public class TravelPackageService {
 
 	private TravelPackageRepository travelPackageRepository;
+	private TravelServiceService travelServiceService;
+	private ImageService imageService;
 
-	public TravelPackageService(TravelPackageRepository travelPackageRepository) {
+	public TravelPackageService(TravelPackageRepository travelPackageRepository,
+			TravelServiceService travelServiceService, ImageService imageService) {
 		super();
 		this.travelPackageRepository = travelPackageRepository;
+		this.travelServiceService = travelServiceService;
+		this.imageService = imageService;
+
 	}
 
 	public boolean validateReservation(Reservation reservation) {
@@ -51,7 +55,7 @@ public class TravelPackageService {
 	}
 
 	// Finding a single travel package
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Optional<TravelPackage> findTravelPackageById(Integer id) {
 		return travelPackageRepository.findById(id);
 	}
@@ -65,14 +69,23 @@ public class TravelPackageService {
 		}
 		return travelPackageRepository.save(travelPackage);
 	}
+
 	@Transactional
 	public void deleteTravelPackageById(Integer id) {
 		travelPackageRepository.deleteById(id);
 	}
 
 	// Saving a travel package
-	@Transactional 
-	public TravelPackage saveTravelPackage(TravelPackage travelPackage) {
-		return travelPackageRepository.save(travelPackage);
+	@Transactional
+	public List<TravelPackage> saveTravelPackage(List<TravelPackage> travelPackage) {
+		travelPackageRepository.saveAll(travelPackage);
+
+		for (TravelPackage tPackage : travelPackage) {
+			travelPackageRepository.save(tPackage);
+			travelServiceService.saveAll(tPackage.getAvailableServiceList());
+			imageService.saveAll(tPackage.getImages());
+		}
+
+		return travelPackage;
 	}
 }

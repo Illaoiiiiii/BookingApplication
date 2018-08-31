@@ -16,9 +16,9 @@ public class ReservationService {
 		this.travelPackageService = travelPackageService;
 	}
 
+	//This is for relationship validation
 	@Transactional
 	public Reservation reserve(Reservation reservation) {
-		// check availed services if it's in a travel package first
 		if (travelPackageService.validateReservation(reservation)) {
 			return reservationRepository.save(reservation);
 		} else {

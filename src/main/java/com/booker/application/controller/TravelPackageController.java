@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,10 +34,15 @@ public class TravelPackageController {
 
 	//Inserting a travel package into the repository
 	@PostMapping()
-	public TravelPackage saveTravelPackages(@RequestBody TravelPackage travelPackage) {
+	public List<TravelPackage> saveTravelPackages(@RequestBody List<TravelPackage> travelPackage) {
 		return travelPackageService.saveTravelPackage(travelPackage);
 	}
 
+	@PutMapping()
+	public List<TravelPackage> updateTravelPackages(@RequestBody List<TravelPackage> travelPackage){
+		return travelPackageService.saveTravelPackage(travelPackage);
+	}
+	
 	// Request Mapping of the travel-package inquiry (single)
 	@GetMapping("/{travelPackageId}")
 	public Optional<TravelPackage> getTravelPackageById(@PathVariable("travelPackageId") Integer id) {

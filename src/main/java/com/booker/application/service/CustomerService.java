@@ -3,12 +3,9 @@ package com.booker.application.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-
 import com.booker.application.model.Customer;
 import com.booker.application.repository.CustomerRepository;
 
-@Service
 public class CustomerService {
 
 	private CustomerRepository customerRepository;

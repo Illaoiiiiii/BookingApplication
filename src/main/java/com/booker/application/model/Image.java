@@ -1,25 +1,28 @@
 package com.booker.application.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@JsonIdentityInfo(generator=PropertyGenerator.class,property="imageId")
 public class Image {
 	
 	@Id
-	private int imageId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer imageId;
 	private String description;
 	private String imageUrl;
+	@JsonIgnore
+	private TravelPackage travelPackage;
 	
 	
-	public int getImageId() {
+	public Integer getImageId() {
 		return imageId;
 	}
-	public void setImageId(int imageId) {
+	public void setImageId(Integer imageId) {
 		this.imageId = imageId;
 	}
 	public String getDescription() {
@@ -33,6 +36,12 @@ public class Image {
 	}
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+	public TravelPackage getTravelPackage() {
+		return travelPackage;
+	}
+	public void setTravelPackage(TravelPackage travelPackage) {
+		this.travelPackage = travelPackage;
 	}
 	
 }
