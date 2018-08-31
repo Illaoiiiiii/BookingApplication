@@ -17,7 +17,7 @@ public class TravelPackage {
 	private Integer travelPackageId;
 	private String packageName;
 	@OneToMany
-	List<Service> availableServiceList;
+	List<TravelService> availableServiceList;
 	@OneToMany
 	List<Image> images;
 	private String description;
@@ -34,10 +34,10 @@ public class TravelPackage {
 	public void setPackageName(String packageName) {
 		this.packageName = packageName;
 	}
-	public List<Service> getAvailableServiceList() {
+	public List<TravelService> getAvailableServiceList() {
 		return availableServiceList;
 	}
-	public void setAvailableServiceList(List<Service> availableServiceList) {
+	public void setAvailableServiceList(List<TravelService> availableServiceList) {
 		this.availableServiceList = availableServiceList;
 	}
 	public List<Image> getImages() {

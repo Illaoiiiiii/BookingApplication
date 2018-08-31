@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Service {
+public class TravelService {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -19,6 +19,7 @@ public class Service {
 	private String description;
 	@OneToMany
 	List<Image> images;
+	
 	
 	public int getServiceId() {
 		return serviceId;

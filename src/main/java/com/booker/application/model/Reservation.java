@@ -22,7 +22,7 @@ public class Reservation {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int reservationId;
 	@OneToMany
-	List<Service> availedServiceList;
+	List<TravelService> availedServiceList;
 	LocalDate departureDate;
 	@ManyToOne
 	Customer customer;
@@ -33,10 +33,10 @@ public class Reservation {
 	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
 	}
-	public List<Service> getAvailedServiceList() {
+	public List<TravelService> getAvailedServiceList() {
 		return availedServiceList;
 	}
-	public void setAvailedServiceList(List<Service> availedServiceList) {
+	public void setAvailedServiceList(List<TravelService> availedServiceList) {
 		this.availedServiceList = availedServiceList;
 	}
 	public LocalDate getDate() {

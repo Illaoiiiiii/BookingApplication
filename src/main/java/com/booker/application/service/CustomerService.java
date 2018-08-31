@@ -29,11 +29,7 @@ public class CustomerService {
 	}
 	public Customer updateCustomer(Customer customer) {
 		if(customer.getCustomerId() != null) {
-		Customer updatedCustomer = new Customer();
-		updatedCustomer.setCustomerId(customer.getCustomerId());
-		updatedCustomer.setFirstName(customer.getFirstName());
-		updatedCustomer.setLastName(customer.getLastName());
-		return customerRepository.save(updatedCustomer);
+		return customerRepository.save(customer);
 		}
 		return customerRepository.save(customer);
 		

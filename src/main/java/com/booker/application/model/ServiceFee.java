@@ -18,7 +18,7 @@ public class ServiceFee {
 	private int serviceFeeId;
 	private float amount;
 	@OneToMany
-	List<Service> service;
+	List<TravelService> travelService;
 	LocalDate date;
 	
 	public int getServiceFeeId() {
@@ -33,11 +33,11 @@ public class ServiceFee {
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
-	public List<Service> getService() {
-		return service;
+	public List<TravelService> getService() {
+		return travelService;
 	}
-	public void setService(List<Service> service) {
-		this.service = service;
+	public void setService(List<TravelService> travelService) {
+		this.travelService = travelService;
 	}
 	public LocalDate getDate() {
 		return date;
